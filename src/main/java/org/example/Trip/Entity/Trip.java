@@ -71,10 +71,4 @@ public class Trip {
             this.inviteCode = UUID.randomUUID();
         }
     }
-
-    // Зручний метод, щоб не лізти в members напряму з сервісу
-    public void addMember(TripMember member) {
-        members.add(member);
-        member.setTrip(this);
-    }
 }

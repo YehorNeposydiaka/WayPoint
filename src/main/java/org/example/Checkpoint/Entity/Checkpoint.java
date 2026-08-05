@@ -44,10 +44,7 @@ public class Checkpoint {
     private BigDecimal cost;
 
     @Column(nullable = false, length = 200)
-    private String departureLocation;
-
-    @Column(nullable = false, length = 200)
-    private String arrivalLocation;
+    private String location;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "trip_id", nullable = false)
@@ -56,11 +53,8 @@ public class Checkpoint {
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
 
-    private boolean isCompleted;
-
     @PrePersist
     protected void onCreate() {
         this.createdAt = Instant.now();
-        this.isCompleted = false;
     }
 }

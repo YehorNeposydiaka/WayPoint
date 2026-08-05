@@ -16,13 +16,13 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "preparations")
+@Table(name = "preparation_points")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Preparation {
+public class PreparationPoint {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -35,7 +35,7 @@ public class Preparation {
     private String note;
 
     private LocalDateTime deadline;
-    private String link;
+    private String attachmentLink;
     private BigDecimal cost;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
