@@ -96,7 +96,7 @@ public class TripService {
     }
 
     public List<TripResponse> getUserTrips(UUID userId){
-        List<Trip> trips = tripMemberRepository.findAllTripByUser_Id(userId);
+        List<Trip> trips = tripMemberRepository.findAllTripsByUserId(userId);
 
         return trips.stream()
                 .map(trip -> toTripResponse(trip))
@@ -216,7 +216,7 @@ public class TripService {
     }
     private TripMemberResponse toTripMemberResponse(TripMember member){
         return new TripMemberResponse(
-                member.getId(),
+                member.getUser().getId(),
                 member.getUser().getFullName(),
                 member.getUser().getEmail(),
                 member.getRole(),

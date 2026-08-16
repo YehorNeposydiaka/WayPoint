@@ -14,6 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/trips")
+@CrossOrigin(origins = "http://localhost:5173")
 public class TripController {
     private final TripService tripService;
     public TripController(TripService tripService) {

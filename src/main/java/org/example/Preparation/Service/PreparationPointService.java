@@ -49,8 +49,9 @@ public class PreparationPointService {
                 .note(request.note())
                 .deadline(request.deadline())
                 .attachmentLink(request.attachmentLink())
-                .cost(request.cost()).build();
-        point.setCompleted(false);
+                .cost(request.cost())
+                .isCompleted(false).build();
+
         point.setTrip(trip);
         preparationPointRepository.save(point);
 
@@ -189,8 +190,8 @@ public class PreparationPointService {
                 point.getDeadline(),
                 point.getAttachmentLink(),
                 point.getCost(),
-                assignedUserId,
                 point.getTrip().getId(),
+                point.getAssignedMember() != null ? point.getAssignedMember().getId() : null,
                 point.getCreatedAt());
     }
 }

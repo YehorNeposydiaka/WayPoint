@@ -12,7 +12,7 @@ public interface PreparationPointRepository extends JpaRepository<PreparationPoi
     List<PreparationPoint> findAllByTrip_Id(UUID tripId);
 
     @Query("""
-    SELECT p FROM Preparation p
+    SELECT p FROM PreparationPoint p
     WHERE p.trip.id = :tripId
     AND (p.assignedMember.user.id = :userId OR p.assignedMember IS NULL)
     """)

@@ -36,11 +36,11 @@ public class Transfer {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private TransferType transportType;
+    private TransferType transferType;
 
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
-    private String ticket;
+    private String ticketUrl;
     private BigDecimal cost;
 
     @Column(nullable = false, length = 200)
