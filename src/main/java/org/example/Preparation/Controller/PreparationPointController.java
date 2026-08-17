@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/trips/{tripId}/preparations")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://waypoint-frontend-six.vercel.app")
 public class PreparationPointController {
     private final PreparationPointService preparationPointService;
 
