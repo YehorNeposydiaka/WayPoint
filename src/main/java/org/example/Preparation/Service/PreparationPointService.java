@@ -58,6 +58,7 @@ public class PreparationPointService {
         return toPreparationPointResponse(point);
     }
 
+    @Transactional(readOnly = true)
     public List<PreparationPointResponse> getPreparationPoints(UUID tripId, UUID userId){
         tripAccessCheck(tripId, userId);
         List<PreparationPoint> points = preparationPointRepository.findAllByTrip_Id(tripId);
@@ -66,6 +67,7 @@ public class PreparationPointService {
                 .map(point -> toPreparationPointResponse(point)).toList();
     }
 
+    @Transactional(readOnly = true)
     public List<PreparationPointResponse> getUserPreparationPoints(UUID tripId, UUID userId){
         tripAccessCheck(tripId, userId);
         List<PreparationPoint> points = preparationPointRepository.findByTripIdForUser(tripId, userId);
@@ -74,6 +76,7 @@ public class PreparationPointService {
                 .map(point -> toPreparationPointResponse(point)).toList();
     }
 
+    @Transactional(readOnly = true)
     public PreparationPointResponse getPreparationPointById(UUID preparationPointId, UUID userId){
         PreparationPoint point = preparationPointRepository.findById(preparationPointId)
                 .orElseThrow(() -> new ApiException("Preparation point not found", HttpStatus.NOT_FOUND));
@@ -191,7 +194,7 @@ public class PreparationPointService {
                 point.getAttachmentLink(),
                 point.getCost(),
                 point.getTrip().getId(),
-                point.getAssignedMember() != null ? point.getAssignedMember().getId() : null,
+                point.getAssignedMember() != null ? point.getAssignedMember().getUser().getId() : null,
                 point.getCreatedAt());
     }
 }
