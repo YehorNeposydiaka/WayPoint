@@ -151,9 +151,20 @@ public class PreparationPointService {
                 .map(Trip::getOwner)
                 .map(owner -> userId.equals(owner.getId()))
                 .orElse(false);
+        System.out.println("User ID: " + userId);
+        System.out.println("Trip owner: " + point.getTrip().getOwner().getId());
 
+        System.out.println(
+                "Assigned user: " +
+                        (point.getAssignedMember() != null
+                                ? point.getAssignedMember().getUser().getId()
+                                : null)
+        );
+
+        System.out.println("isAssignedUser: " + isAssignedUser);
+        System.out.println("isTripOwner: " + isTripOwner);
         if (isAssignedUser || isTripOwner) {
-            point.setCompleted(true);
+            point.setCompleted(!point.isCompleted());
             preparationPointRepository.save(point);
         } else {
             throw new ApiException("User have not access to complete this task", HttpStatus.FORBIDDEN);
