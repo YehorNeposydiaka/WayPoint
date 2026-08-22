@@ -195,6 +195,7 @@ public class PreparationPointService {
                 point.getCost(),
                 point.getTrip().getId(),
                 point.getAssignedMember() != null ? point.getAssignedMember().getUser().getId() : null,
+                point.isCompleted(),
                 point.getCreatedAt());
     }
 }

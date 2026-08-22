@@ -14,5 +14,6 @@ public record PreparationPointResponse (
         BigDecimal cost,
         UUID tripId,
         UUID assignedMemberId,
+        boolean completed,
         Instant createdAt
 ){}
