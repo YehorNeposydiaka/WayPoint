@@ -133,6 +133,10 @@ public class PreparationPointService {
 
     @Transactional
     public PreparationPointResponse toggleComplete(UUID pointId, UUID userId){
+        System.out.println("========== COMPLETE ENDPOINT ==========");
+        System.out.println("pointId = " + pointId);
+        System.out.println("principal = " + userId);
+        System.out.println("=======================================");
         PreparationPoint point = preparationPointRepository.findById(pointId)
                 .orElseThrow(() -> new ApiException("Preparation point not found", HttpStatus.NOT_FOUND));
 
