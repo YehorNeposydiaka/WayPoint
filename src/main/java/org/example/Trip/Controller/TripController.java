@@ -109,7 +109,7 @@ public class TripController {
     @GetMapping("/{tripId}/stats")
     public ResponseEntity<TripStatResponse> getTripStat(@AuthenticationPrincipal UserPrincipal principal,
                                                     @PathVariable UUID tripId){
-        TripStatResponse response = tripStatService.getTripStat(tripId, principal.getId());
+        TripStatResponse response = tripStatService.getTripStat(principal.getId(), tripId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
