@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.example.Security.UserPrincipal;
 import org.example.Trip.DTO.*;
 import org.example.Trip.Service.TripService;
+import org.example.Trip.Service.TripStatService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,8 +17,10 @@ import java.util.UUID;
 @RequestMapping("/api/trips")
 public class TripController {
     private final TripService tripService;
-    public TripController(TripService tripService) {
+    private final TripStatService tripStatService;
+    public TripController(TripService tripService, TripStatService tripStatService) {
         this.tripService = tripService;
+        this.tripStatService = tripStatService;
     }
 
     @PostMapping
@@ -101,5 +104,12 @@ public class TripController {
                                                  @PathVariable UUID userId){
         tripService.removeTripMember(tripId, principal.getId(), userId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/{tripId}/stats")
+    public ResponseEntity<TripStatResponse> getTripStat(@AuthenticationPrincipal UserPrincipal principal,
+                                                    @PathVariable UUID tripId){
+        TripStatResponse response = tripStatService.getTripStat(tripId, principal.getId());
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
